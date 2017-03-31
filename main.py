@@ -6,43 +6,26 @@ api_secret = '79b370b1c36b3b65'
 flickr = flickrapi.FlickrAPI(api_key, api_secret, format='parsed-json')
 
 # ----------------------------------------------------------------------
-my_tag = 'disgusting, baby'
+
+f = open('city.txt', 'r')
+lines = f.readlines()
+f.close()
+
 # ----------------------------------------------------------------------
 
+for line in lines:
+    my_tag = line[:-7] + ', city'
 
-srch = flickr.photos.search(tags=my_tag, tag_mode='all', text=my_tag, safe_search=3, sort='relevance', page=2)
-for i in srch['photos']['photo']:
     try:
-        urls = flickr.photos.getSizes(photo_id=i['id'])
-    except:
-        continue
-    try:
-        print urls['sizes']['size'][4]['source']
+        srch = flickr.photos.search(tags=my_tag, tag_mode='all', per_page=500)
+        print (my_tag, len(srch['photos']['photo']))
     except:
         continue
 
-    # for i in urls['sizes']['size']:
-    #     print i
+    # for i in srch['photos']['photo']:
+    #     try:
+    #         urls = flickr.photos.getSizes(photo_id=i['id'])
+    #     except:
+    #         continue
     #
-    # print ''
-
-
-
-# clus = flickr.tags.getClusters(tag=my_tag)
-# for i in clus['clusters']['cluster']:
-#     print i
-
-
-# rela = flickr.tags.getRelated(tag=my_tag)
-# for i in rela['tags']['tag']:
-#     print i
-
-
-# tags = flickr.tags.getClusterPhotos(tag=my_tag)
-# for i in tags[u'photos'][u'photo']:
-#     try:
-#         urls = flickr.photos.getSizes(photo_id=i['id'])
-#     except:
-#         continue
-#
-#     print urls['sizes']['size'][-1]['source']
+    #     print (urls['sizes']['size'][1]['source'])
