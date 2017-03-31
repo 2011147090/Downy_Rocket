@@ -28,4 +28,5 @@ for line in city_adjective.readlines():
         parsed_url = str(photo_url).split('c1.staticflickr.com')[1].split('.jpg')[0]
         photo = base_photo_url.format(parsed_url)
         print (photo)
+
     print ("-"*70)
