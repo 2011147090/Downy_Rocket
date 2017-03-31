@@ -1,6 +1,9 @@
+import urllib.request
 import requests
 import json
+
 from bs4 import BeautifulSoup
+
 
 city_adjective = open('data/city.txt', 'r')
 base_url = 'https://www.flickr.com/search/?text={}%20city'
